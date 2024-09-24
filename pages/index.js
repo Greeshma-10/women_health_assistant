@@ -1,4 +1,4 @@
-// pages/index.js
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -7,10 +7,35 @@ import About from './components/about';
 import Listing from './components/listing';
 import Blog from './components/blog';
 import Footer from './components/footer';
-
-
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { auth } from '../firebase.js';
 
 export default function Home() {
+  const [user, setUser] = useState(null); // To store the signed-in user
+
+  // Listen for the authentication state change
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
+      } else {
+        setUser(null); // No user is signed in
+      }
+    });
+
+    return () => unsubscribe(); // Cleanup subscription on unmount
+  }, []);
+
+  // Handle sign out
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      console.log('User signed out');
+    } catch (error) {
+      console.error('Sign out error:', error.message);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -18,29 +43,22 @@ export default function Home() {
         <meta name="description" content="This is a medical HTML template made by codewithsadee" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
-       
-        
         <link
           href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Rubik:wght@400;500;700&display=swap"
           rel="stylesheet"
         />
-         <link rel="stylesheet" href="/assets/css/style.css" />
-         <link rel="preload"  href="/assets/images/hero-banner.png"/>
-        <link rel="preload" href="/assets/images/hero-bg.png"/>
+        <link rel="stylesheet" href="/assets/css/style.css" />
+        <link rel="preload" href="/assets/images/hero-banner.png" />
+        <link rel="preload" href="/assets/images/hero-bg.png" />
         <script src="/assets/js/script.js" defer></script>
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
       </Head>
-      
 
-      
       {/* PRELOADER */}
       <div className="preloader" data-preloader>
         <div className="circle"></div>
       </div>
-
-      
 
       {/* HEADER */}
       <header className="header" data-header>
@@ -84,10 +102,25 @@ export default function Home() {
                 </Link>
               </li>
             </ul>
+
+            <div className="auth-buttons">
+              {user ? (
+                <>
+                  <p className="title-md">Signed in as: {user.email}</p>
+                  <button className="btn btn-auth title-md" onClick={handleSignOut}>
+                    Sign Out
+                  </button>
+                </>
+              ) : (
+                <Link href="./components/signin" className="btn btn-auth title-md">
+                  Sign In/Sign Up
+                </Link>
+              )}
+            </div>
             <button className="nav-open-btn" aria-label="open menu" data-nav-toggler>
               <ion-icon name="menu-outline"></ion-icon>
             </button>
-            
+
             <Link href="/" className="btn has-before title-md">
               Make Appointment
             </Link>
@@ -95,7 +128,6 @@ export default function Home() {
           </nav>
         </div>
       </header>
-     
 
       {/* HERO SECTION */}
       <section className="section hero" style={{ backgroundImage: 'url("/assets/images/hero-bg.png")' }}>
@@ -127,12 +159,12 @@ export default function Home() {
           </figure>
         </div>
       </section>
-      
+
       <Service />
       <About />
       <Listing />
       <Blog />
-      <Footer/>
+      <Footer />
       <a href="#top" className="back-top-btn" aria-label="back to top" data-back-top-btn>
         <ion-icon name="chevron-up"></ion-icon>
       </a>
