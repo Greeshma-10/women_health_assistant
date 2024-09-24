@@ -25,6 +25,7 @@
       document.body.classList.add("loaded");
     }, MIN_PRELOADER_TIME);
   });
+  
 
   /**
    * MOBILE NAVBAR

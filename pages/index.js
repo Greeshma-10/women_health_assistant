@@ -9,6 +9,7 @@ import Blog from './components/blog';
 import Footer from './components/footer';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '../firebase.js';
+import { colors } from '@mui/material';
 
 export default function Home() {
   const [user, setUser] = useState(null); // To store the signed-in user
@@ -103,16 +104,33 @@ export default function Home() {
               </li>
             </ul>
 
-            <div className="auth-buttons">
+            <div className="auth-buttons" >
               {user ? (
                 <>
-                  <p className="title-md">Signed in as: {user.email}</p>
-                  <button className="btn btn-auth title-md" onClick={handleSignOut}>
+                  <p className="title-md"> {user.email}</p>
+                  <button className="btn btn-auth title-md"style={{
+                  backgroundColor: 'transparent',
+                  border: '2px solid var(--verdigris)',
+                  color: 'var(--white)',
+                  padding: '10px 20px',
+                  fontSize: '16px',
+                  cursor: 'pointer',
+                  transition: 'background-color 0.3s ease, color 0.3s ease',
+                }} onClick={handleSignOut}>
                     Sign Out
                   </button>
                 </>
               ) : (
-                <Link href="./components/signin" className="btn btn-auth title-md">
+                <Link href="./components/signin" className="btn btn-auth title-md" style={{
+                  backgroundColor: 'transparent',
+                  border: '2px solid var(--verdigris)',
+                  color: 'var(--white)',
+                  padding: '10px 20px',
+                  gap:'8px',
+                  fontSize: '16px',
+                  cursor: 'pointer',
+                  transition: 'background-color 0.3s ease, color 0.3s ease',
+                }}>
                   Sign In/Sign Up
                 </Link>
               )}
