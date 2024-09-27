@@ -84,7 +84,11 @@ const Timestamp = styled(Typography)(({ theme }) => ({
   marginLeft: '8px',
 }));
 
+<<<<<<< HEAD
 export default function chatBot() {
+=======
+export default function Home() {
+>>>>>>> parent of 84ea840 (Revert "working on chatbot functionality")
   const [messages, setMessages] = useState([
     {
       role: 'assistant',

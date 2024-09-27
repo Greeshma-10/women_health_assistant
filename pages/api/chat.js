@@ -10,7 +10,11 @@ const app = initializeApp({
 
 const auth = getAuth(app);
 
+<<<<<<< HEAD
 export async function POST(req) {
+=======
+export default async function POST(req) {
+>>>>>>> parent of 84ea840 (Revert "working on chatbot functionality")
   const authToken = req.headers.get('authorization')?.split('Bearer ')[1];
 
   if (!authToken) {
