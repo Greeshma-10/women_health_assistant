@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -9,10 +7,9 @@ import About from './components/about';
 import Listing from './components/listing';
 import Blog from './components/blog';
 import Footer from './components/footer';
-import  chatBot from './chatbot'; // Import the Chatbot component
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { auth } from '../firebase';
-import Typography from '@mui/material/Typography'; // Import Typography for displaying messages
+import { auth } from '../firebase.js';
+import { colors } from '@mui/material';
 
 export default function Home() {
   const [user, setUser] = useState(null); // To store the signed-in user
@@ -81,34 +78,45 @@ export default function Home() {
             </div>
             <ul className="navbar-list">
               <li className="navbar-item">
-                <Link href="/" className="navbar-link title-md">Home</Link>
+                <Link href="/" className="navbar-link title-md">
+                  Home
+                </Link>
               </li>
               <li className="navbar-item">
-                <Link href="/" className="navbar-link title-md">Doctors</Link>
+                <Link href="/" className="navbar-link title-md">
+                  Doctors
+                </Link>
               </li>
               <li className="navbar-item">
-                <Link href="/" className="navbar-link title-md">Services</Link>
+                <Link href="/" className="navbar-link title-md">
+                  Services
+                </Link>
               </li>
               <li className="navbar-item">
-                <Link href="/" className="navbar-link title-md">Blog</Link>
+                <Link href="/" className="navbar-link title-md">
+                  Blog
+                </Link>
               </li>
               <li className="navbar-item">
-                <Link href="/" className="navbar-link title-md">Contact</Link>
+                <Link href="/" className="navbar-link title-md">
+                  Contact
+                </Link>
               </li>
             </ul>
 
-            <div className="auth-buttons">
+            <div className="auth-buttons" >
               {user ? (
                 <>
-                  <button className="btn btn-auth title-md" onClick={handleSignOut} style={{
-                    backgroundColor: 'transparent',
-                    border: '2px solid var(--verdigris)',
-                    color: 'var(--white)',
-                    padding: '10px 20px',
-                    fontSize: '16px',
-                    cursor: 'pointer',
-                    transition: 'background-color 0.3s ease, color 0.3s ease',
-                  }}>
+                  <p className="title-md"> {user.email}</p>
+                  <button className="btn btn-auth title-md"style={{
+                  backgroundColor: 'transparent',
+                  border: '2px solid var(--verdigris)',
+                  color: 'var(--white)',
+                  padding: '10px 20px',
+                  fontSize: '16px',
+                  cursor: 'pointer',
+                  transition: 'background-color 0.3s ease, color 0.3s ease',
+                }} onClick={handleSignOut}>
                     Sign Out
                   </button>
                 </>
@@ -118,7 +126,7 @@ export default function Home() {
                   border: '2px solid var(--verdigris)',
                   color: 'var(--white)',
                   padding: '10px 20px',
-                  gap: '8px',
+                  gap:'8px',
                   fontSize: '16px',
                   cursor: 'pointer',
                   transition: 'background-color 0.3s ease, color 0.3s ease',
@@ -139,14 +147,17 @@ export default function Home() {
         </div>
       </header>
 
-    
-
       {/* HERO SECTION */}
       <section className="section hero" style={{ backgroundImage: 'url("/assets/images/hero-bg.png")' }}>
         <div className="container">
           <div className="hero-content">
-            <p className="hero-subtitle has-before" data-reveal="left">Welcome To Doclab</p>
-            <h1 className="headline-lg hero-title" data-reveal="left">Find Nearest <br /> Doctor.</h1>
+            <p className="hero-subtitle has-before" data-reveal="left">
+              Welcome To Doclab
+            </p>
+            <h1 className="headline-lg hero-title" data-reveal="left">
+              Find Nearest <br />
+              Doctor.
+            </h1>
             <div className="hero-card" data-reveal="left">
               <p className="title-lg card-text">Search doctors, clinics, hospitals, etc.</p>
               <div className="wrapper">
@@ -172,11 +183,6 @@ export default function Home() {
       <Listing />
       <Blog />
       <Footer />
-      
-      <div className="chatbot-avatar" onClick={() => window.location.href = '/chatbot'}>
-        <Image src="/assets/images/chatbot.jpg" alt="Chatbot" width={64} height={64} />
-        <chatBot/>
-      </div>
       <a href="#top" className="back-top-btn" aria-label="back to top" data-back-top-btn>
         <ion-icon name="chevron-up"></ion-icon>
       </a>
