@@ -9,7 +9,7 @@ import About from './components/about';
 import Listing from './components/listing';
 import Blog from './components/blog';
 import Footer from './components/footer';
-//import  chatBot from './chatbot'; // Import the Chatbot component
+import  chatBot from './chatbot'; // Import the Chatbot component
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 
 import { auth } from '../firebase';
