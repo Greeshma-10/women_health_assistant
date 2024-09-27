@@ -1,5 +1,5 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { initializeApp ,getApps } from 'firebase/app';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { getAuth, GoogleAuthProvider} from 'firebase/auth';
@@ -16,12 +16,19 @@ const firebaseConfig = {
 
 // Initialize Firebase
 
-const app = initializeApp(firebaseConfig);
+
 
 // Initialize Firebase Authentication and get a reference to the service
-
+let app;
+if (!initializeApp.length) {
+    app = initializeApp(firebaseConfig);
+} else {
+    app = initializeApp(firebaseConfig, 'chatbot'); // Provide a unique name if initializing multiple apps
+}
 
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
+
+export default app;
 export { auth, googleProvider };
