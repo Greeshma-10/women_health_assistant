@@ -12,8 +12,13 @@ import Footer from './components/footer';
 import  chatBot from './chatbot'; // Import the Chatbot component
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { auth } from '../firebase.js';
 import chatBot from './chatbot'; // Your chatbot component or logic
+=======
+import { auth } from '../firebase';
+import Typography from '@mui/material/Typography'; // Import Typography for displaying messages
+>>>>>>> parent of 84ea840 (Revert "working on chatbot functionality")
 =======
 import { auth } from '../firebase';
 import Typography from '@mui/material/Typography'; // Import Typography for displaying messages
@@ -182,6 +187,7 @@ export default function Home() {
       <Blog />
       <Footer />
 <<<<<<< HEAD
+<<<<<<< HEAD
 
       {/* Floating chatbot icon */}
       <div className="chatbot-icon">
@@ -199,11 +205,16 @@ export default function Home() {
 
       {/* Back to Top Button */}
 =======
+=======
+>>>>>>> parent of 84ea840 (Revert "working on chatbot functionality")
       
       <div className="chatbot-avatar" onClick={() => window.location.href = '/chatbot'}>
         <Image src="/assets/images/chatbot.jpg" alt="Chatbot" width={64} height={64} />
         <chatBot/>
       </div>
+<<<<<<< HEAD
+>>>>>>> parent of 84ea840 (Revert "working on chatbot functionality")
+=======
 >>>>>>> parent of 84ea840 (Revert "working on chatbot functionality")
       <a href="#top" className="back-top-btn" aria-label="back to top" data-back-top-btn>
         <ion-icon name="chevron-up"></ion-icon>
