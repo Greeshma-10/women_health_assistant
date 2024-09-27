@@ -1,4 +1,4 @@
-'use client';
+
 
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
@@ -9,20 +9,11 @@ import About from './components/about';
 import Listing from './components/listing';
 import Blog from './components/blog';
 import Footer from './components/footer';
-import  chatBot from './chatbot'; // Import the Chatbot component
+//import  chatBot from './chatbot'; // Import the Chatbot component
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-<<<<<<< HEAD
-<<<<<<< HEAD
-import { auth } from '../firebase.js';
-import chatBot from './chatbot'; // Your chatbot component or logic
-=======
+
 import { auth } from '../firebase';
 import Typography from '@mui/material/Typography'; // Import Typography for displaying messages
->>>>>>> parent of 84ea840 (Revert "working on chatbot functionality")
-=======
-import { auth } from '../firebase';
-import Typography from '@mui/material/Typography'; // Import Typography for displaying messages
->>>>>>> parent of 84ea840 (Revert "working on chatbot functionality")
 
 export default function Home() {
   const [user, setUser] = useState(null); // To store the signed-in user
@@ -69,9 +60,7 @@ export default function Home() {
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
       </Head>
 
-<<<<<<< HEAD
-      {/* Your other components like header, hero section, etc. */}
-=======
+
       {/* PRELOADER */}
       <div className="preloader" data-preloader>
         <div className="circle"></div>
@@ -179,62 +168,22 @@ export default function Home() {
           </figure>
         </div>
       </section>
->>>>>>> parent of 84ea840 (Revert "working on chatbot functionality")
+
 
       <Service />
       <About />
       <Listing />
       <Blog />
       <Footer />
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-      {/* Floating chatbot icon */}
-      <div className="chatbot-icon">
-        <Image
-          src="/assets/images/chatbot.jpg" // Replace with your chatbot icon image path
-          width={70}
-          height={70}
-          alt="Chatbot"
-          onClick={() => {
-            // Add the logic to open chatbot interface
-            chatBot.open();
-          }}
-        />
-      </div>
-
-      {/* Back to Top Button */}
-=======
-=======
->>>>>>> parent of 84ea840 (Revert "working on chatbot functionality")
       
       <div className="chatbot-avatar" onClick={() => window.location.href = '/chatbot'}>
         <Image src="/assets/images/chatbot.jpg" alt="Chatbot" width={64} height={64} />
         <chatBot/>
       </div>
-<<<<<<< HEAD
->>>>>>> parent of 84ea840 (Revert "working on chatbot functionality")
-=======
->>>>>>> parent of 84ea840 (Revert "working on chatbot functionality")
       <a href="#top" className="back-top-btn" aria-label="back to top" data-back-top-btn>
         <ion-icon name="chevron-up"></ion-icon>
       </a>
 
-      <style jsx>{`
-        .chatbot-icon {
-          position: fixed;
-          bottom: 20px;
-          left: 20px;
-          cursor: pointer;
-          z-index: 1000; /* Ensure it stays on top */
-        }
-
-        .chatbot-icon:hover {
-          opacity: 0.8;
-          transform: scale(1.05);
-          transition: all 0.3s ease;
-        }
-      `}</style>
     </>
   );
 }
